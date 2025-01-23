@@ -1,22 +1,33 @@
 const baseEndpoint = 'https://api.github.com';
 const usersEndpoint = `${baseEndpoint}/users`;
-const $n = document.querySelector('name');
-const $b = document.querySelector('#blog');
-const $l = document.querySelector('.location');
+const name = document.getElementById('name');
+const blog= document.getElementById('blog');
+const locacion= document.getElementById('location');
+//Se reescriben las constante para mejor lectura del codigo
+//  y se cambian los querySelector por getElement para que traiga mayor precisión
 
+console.log(name);
+console.log(blog);
+console.log(locacion);
+
+
+//
 function displayUser(username) {
-  $n.textContent = 'cargando...';
-  const response = await fetch(`${usersEndpoint}/${username}`);
+  fetch(baseEndpoint).then((response) =>{
+    name.textContent='cargando...'
+  })
+  name.textContent = 'cargando...';
+  const response =  fetch(`${usersEndpoint}/${username}`);
   console.log(data);
-  $n.textContent = '${data.name}';
-  $b.textContent = '${data.blog}';
-  $l.textContent = '${data.location}';
+  name.textContent = '${data.name}';
+  blog.textContent = '${data.blog}';
+  locacion.textContent = '${data.location}';
 }
 
 function handleError(err) {
   console.log('OH NO!');
   console.log(err);
-  n.textContent = `Algo salió mal: ${err}`
+  name.textContent = `Algo salió mal: ${err}`
 }
 
 displayUser('stolinski').catch(handleError);
